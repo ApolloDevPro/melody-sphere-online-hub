@@ -2,41 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Music Streaming App Design System - Dark theme with vibrant gradients */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Dark Music Theme */
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 240 10% 7%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 240 10% 7%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Vibrant Purple-Pink Primary */
+    --primary: 280 100% 70%;
+    --primary-foreground: 240 10% 3.9%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Music Player Controls */
+    --secondary: 240 5% 15%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 240 5% 11%;
+    --muted-foreground: 240 5% 64.9%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Neon Accent for Active States */
+    --accent: 320 100% 68%;
+    --accent-foreground: 240 10% 3.9%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 240 6% 20%;
+    --input: 240 6% 20%;
+    --ring: 280 100% 70%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Music-specific Design Tokens */
+    --music-gradient-primary: linear-gradient(135deg, hsl(280, 100%, 70%), hsl(320, 100%, 68%));
+    --music-gradient-secondary: linear-gradient(180deg, hsl(240, 10%, 7%), hsl(240, 5%, 11%));
+    --music-gradient-hero: linear-gradient(135deg, hsl(280, 100%, 70%) 0%, hsl(320, 100%, 68%) 50%, hsl(260, 100%, 75%) 100%);
+    
+    /* Glassmorphism */
+    --glass-bg: hsla(240, 10%, 7%, 0.8);
+    --glass-border: hsla(280, 100%, 70%, 0.2);
+    
+    /* Music Player */
+    --player-bg: hsl(240, 10%, 5%);
+    --player-control: hsl(280, 100%, 70%);
+    --player-control-hover: hsl(320, 100%, 68%);
+    
+    /* Glow Effects */
+    --neon-glow: 0 0 20px hsl(280, 100%, 70%);
+    --soft-glow: 0 4px 20px hsla(280, 100%, 70%, 0.3);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +125,69 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* Music Player Specific Styles */
+  .music-gradient {
+    background: var(--music-gradient-primary);
+  }
+  
+  .music-hero-bg {
+    background: var(--music-gradient-hero);
+  }
+  
+  .glass-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+  }
+  
+  .neon-glow {
+    box-shadow: var(--neon-glow);
+  }
+  
+  .soft-glow {
+    box-shadow: var(--soft-glow);
+  }
+  
+  .music-transition {
+    transition: var(--transition-smooth);
+  }
+  
+  .bounce-transition {
+    transition: var(--transition-bounce);
+  }
+
+  /* Music Wave Animation */
+  .music-wave {
+    animation: wave 2s ease-in-out infinite;
+  }
+  
+  .music-wave:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  
+  .music-wave:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+  
+  .music-wave:nth-child(4) {
+    animation-delay: 0.3s;
+  }
+  
+  @keyframes wave {
+    0%, 100% { height: 10px; }
+    50% { height: 30px; }
+  }
+
+  /* Hover Effects */
+  .music-card-hover {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-xl;
+  }
+  
+  .player-control-hover {
+    @apply transition-all duration-200 hover:scale-110;
   }
 }
